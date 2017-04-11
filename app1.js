@@ -1,14 +1,17 @@
 
-  $( document ).ready(function() {
+  $( document ).ready(function() {	  
 	  
-	  
-		$("#ProfileTab" ).hide();
-		$('#profile a').click(function (e) {
-		e.preventDefault()
-		$(this).tab('show')
-		$("#ProfileTab").css("display: visible")
+		$("#ProfileTab").hide();
+		$("#FeedTab").hide();
 		
-	})
+		$('#profile a').click(function (e) {
+			$("#FeedTab").hide();
+			$("#ProfileTab").show(); })
+		
+		
+		$('#feed a').click(function (e) {
+			$("#ProfileTab").hide();
+			$("#FeedTab").show(100); })
 
 
   });
