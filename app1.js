@@ -20,7 +20,7 @@
 
 		})
  
-  var myFacebookToken = 'EAACEdEose0cBAOHattDCoCQ1hgZBWZBGkZB3eqtcryqLBMZAhZBSdZB8sBY21C3pwoiOTg6WiZCJzUJvI32e8tklzptPxREsjJ14S04VkdSwt8CK4ZC3rKJI6liBem566CBuUqX3tY7aMnKkA7tKsKdM8pJETe5FxSY0PGN3z0920RQtic8gkL2u';
+  var myFacebookToken = 'EAACEdEose0cBANHEi0ilmuPp0tGP1KucK3VHPcveGz6z1MNwTusDnEGj5VhfguAeznp3Yr8Eiceee8sFZA3hBXwAw2FYzMCtgS4vYmviNINy8AX5hISix18PktWBLaoREZB3EZBNsr33g30LZB3TAU68tGuwT5OHHlzJbmUr0As2XHGMBGuj';
 
 
  	function getFacebookInfo(){
@@ -30,7 +30,8 @@
                    $("#name").text(response.name);
                     $("#myEmail").text(response.email);
                     $("#myProfileId").html('<a target="blank" href="https://facebook.com/'+response.id+'">https://facebook.com/'+response.id+'</a>');
-                    $("#myHomeTown").text(response.hometown.name);
+                    $("#myHomeTown").text(response.hometown.name);                   
+ 					$("#myBirthDay").text(response.birthday);
 
                 }
             }
