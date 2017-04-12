@@ -33,6 +33,24 @@
                     $("#myHomeTown").text(response.hometown.name);                   
  					$("#myBirthDay").text(response.birthday);
 
+ 					var school,college;
+					jQuery.each( response.education, function( i, value ) {		
+							jQuery.each( value, function( i, val ) {	
+								if(i === 'school'){									
+									jQuery.each( val, function( i, source ) {
+											if(i === 'name'){
+												school = source;
+											}
+									});									
+								}
+								if(val === 'High School'){									
+									$("#mySchool").text(school.toUpperCase());
+								}
+								if(val ==='College'){
+									$("#myCollage").text(school.toUpperCase());
+								}
+						});
+					});
                 }
             }
         );
