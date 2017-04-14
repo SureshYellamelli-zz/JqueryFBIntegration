@@ -20,10 +20,10 @@
 
 		})
  
-  var myFacebookToken = 'EAACEdEose0cBANHEi0ilmuPp0tGP1KucK3VHPcveGz6z1MNwTusDnEGj5VhfguAeznp3Yr8Eiceee8sFZA3hBXwAw2FYzMCtgS4vYmviNINy8AX5hISix18PktWBLaoREZB3EZBNsr33g30LZB3TAU68tGuwT5OHHlzJbmUr0As2XHGMBGuj';
+  var myFacebookToken = 'EAACEdEose0cBAMTZAuoyQABi9AV9HDOVk7tqN1ItvRKuOkfktORcURdwayrMa9ydZCIesUFWSIiCBPCXPr31gN5ZBuX86mIdlaTGLfLgAetZAkIhlotAv0OKDzMh6eH24gfhS6Uw01um4ZBdrUzrjfZCLdhMKaJZC3PFbynSncTtNPCW53LSRFY';
 
 
- 	function getFacebookInfo(){
+ 	function getFacebookProfile(){
 
         $.ajax('https://graph.facebook.com/me?access_token='+myFacebookToken,{
                 success : function(response){
@@ -55,7 +55,26 @@
             }
         );
     }
-    $("#facebookBtn").on('click',getFacebookInfo)
 
+
+    function getFacebookFeed(){
+   	  $.ajax('https://graph.facebook.com/me/feed?access_token='+myFacebookToken+'&limit=20&fields=from,name,message,created_time,story' ,{
+              success : function(response){
+              	var htmltext = '';
+               	jQuery.each(response, function( i, value ) {           		
+            		jQuery.each(value, function( j, val ) {
+            		 	jQuery.each(val, function(k, test ) {            		
+            	 			if (k === 'message' || k === 'story'){
+            	 				htmltext +=  test + "<br>";            	 				
+            	 		}
+            		});		
+            	});
+            });	
+        }
+    });
+    }
+
+    $("#facebookBtn").on('click',getFacebookProfile);
+  	$("#feedBtn").on('click',getFacebookFeed);
 			
   });
