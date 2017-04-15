@@ -20,7 +20,7 @@
 
 		})
  
-  var myFacebookToken = 'EAACEdEose0cBAMTZAuoyQABi9AV9HDOVk7tqN1ItvRKuOkfktORcURdwayrMa9ydZCIesUFWSIiCBPCXPr31gN5ZBuX86mIdlaTGLfLgAetZAkIhlotAv0OKDzMh6eH24gfhS6Uw01um4ZBdrUzrjfZCLdhMKaJZC3PFbynSncTtNPCW53LSRFY';
+  var myFacebookToken = 'EAACEdEose0cBAGSrvNMzF6WBLK62TMw31gty5MJnJKZAaAPGkYCqAelPlL6stLoctZBLVLyq9wH8t60RqmnNPDZALJ4LIol7hsMGBWPqekRP0lkn0gNZBI4aLJSgZClfV29OiCrOfufZBYDLg6EKFL1ihVmXRZC4E0dawVN3EDGYN2opvQ3YLSjfQZAJxNfI8skZD';
 
 
  	function getFacebookProfile(){
@@ -57,24 +57,23 @@
     }
 
 
-    function getFacebookFeed(){
-   	  $.ajax('https://graph.facebook.com/me/feed?access_token='+myFacebookToken+'&limit=20&fields=from,name,message,created_time,story' ,{
-              success : function(response){
-              	var htmltext = '';
-               	jQuery.each(response, function( i, value ) {           		
+    function getFacebookFeed(){	
+	var feedHTML ='';    	
+   	  $.ajax('https://graph.facebook.com/me/feed?access_token='+myFacebookToken+'&limit=30' ,{
+              success : function(response){              	
+              	jQuery.each(response, function( i, value ) {           		
             		jQuery.each(value, function( j, val ) {
-            		 	jQuery.each(val, function(k, test ) {            		
-            	 			if (k === 'message' || k === 'story'){
-            	 				htmltext +=  test + "<br>";            	 				
-            	 		}
+            		 	jQuery.each(val, function(k, test ) {             		 	           		
+            	 			if (k === 'message' || k === 'story'){     
+								 $( "#feed" ).append("<p>"+test+"</p>");            	 				
+	           	 		}
             		});		
-            	});
-            });	
+            	});            			
+            });  
         }
-    });
+    });   	  
     }
 
     $("#facebookBtn").on('click',getFacebookProfile);
-  	$("#feedBtn").on('click',getFacebookFeed);
-			
+  	$("#feedBtn").on('click',getFacebookFeed);			
   });
